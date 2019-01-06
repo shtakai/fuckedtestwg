@@ -1,3 +1,4 @@
+// package example is fucked off
 package example
 
 import "fmt"
