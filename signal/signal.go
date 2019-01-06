@@ -13,8 +13,8 @@ type Person struct {
 
 func Handler(w http.ResponseWriter, r *http.Request) {
 	p := Person{
-		Age:        30,
-		Name:       "Mom Sapp",
+		Age:        21,
+		Name:       "Bob Sapp",
 		Occupation: "Nurse",
 	}
 	data, err := json.Marshal(p)
@@ -24,7 +24,7 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	w.WriteHeader(200)
 	w.Header().Set("Content-Type", "application/json")
+	w.WriteHeader(200)
 	w.Write(data)
 }
