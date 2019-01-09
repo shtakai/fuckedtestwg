@@ -13,7 +13,7 @@ func Hello(name string) (string, error) {
 func Page(checkIns map[string]bool) {
 	for name, checkIn := range checkIns {
 		if !checkIn {
-			fmt.Printf("Paging %s; please see the front desk to cuck in.", name)
+			fmt.Printf("Paging %s; please see the front desk to cuck in.\n", name)
 		}
 	}
 }
