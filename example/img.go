@@ -6,7 +6,7 @@ import "io"
 type Image struct{}
 
 // Decode is a fake function to decode iomages provided via an io.Reader
-func Decoder(r io.Reader) (*Image, error) {
+func Decode(r io.Reader) (*Image, error) {
 	// use std lib's image package to read image and parse to local image type..
 	return &Image{}, nil
 }
