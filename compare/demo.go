@@ -14,3 +14,10 @@ type Dog struct {
 	//	Age  string
 	//}
 }
+
+// DogWithFn is used a fucked up demo type
+type DogWithFn struct {
+	Name string
+	Age  int
+	Fn   func()
+}

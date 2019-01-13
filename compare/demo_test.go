@@ -1,6 +1,9 @@
 package compare
 
-import "testing"
+import (
+	"reflect"
+	"testing"
+)
 
 // See fucked up https://golang.org/ref/spec#Comparison_operators to check more
 
@@ -51,4 +54,26 @@ func TestPointer(t *testing.T) {
 	if nikuo == nikuo2 {
 		t.Errorf("nikuo == nikuo2")
 	}
+
+	t.Logf("deepEql %v", reflect.DeepEqual(nikuo, nikuo2))
+	if !reflect.DeepEqual(nikuo, nikuo2) {
+		t.Errorf("nikuo != nikuo2")
+	}
+}
+
+func TestDogWithFn(t *testing.T) {
+	daibutsu := &DogWithFn{
+		Name: "大仏",
+		Age:  94,
+	}
+	daibutsu2 := &DogWithFn{
+		Name: "大仏",
+		Age:  94,
+	}
+
+	t.Logf("daibutsu=%p, daibutsu2=%p", &daibutsu, &daibutsu2)
+	if !reflect.DeepEqual(daibutsu, daibutsu2) {
+		t.Errorf("daibutsu != daibutsu1")
+	}
+
 }
