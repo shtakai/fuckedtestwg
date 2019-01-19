@@ -42,6 +42,9 @@ func TestFib(t *testing.T) {
 	for name, fn := range funcs {
 		t.Run(name, func(t *testing.T) {
 			for _, tc := range tests {
+				if testing.Verbose() {
+					//t.Logf("Testing: %d", tc.arg)
+				}
 				got := fn(tc.arg)
 				if got != tc.want {
 					t.Errorf("Fib(%d) = %d; wand %d", tc.arg, got, tc.want)
