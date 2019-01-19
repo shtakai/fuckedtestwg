@@ -1,10 +1,8 @@
 package cover
 
-import "math"
-
-func Circle(r float64) float64 {
-	return math.Pi * r * r
-}
+//func Circle(r float64) float64 {
+//	return math.Pi * r * r
+//}
 
 func Triangle(base, height float64) float64 {
 	return (base * height) / 2

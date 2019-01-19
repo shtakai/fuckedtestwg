@@ -18,3 +18,14 @@ func TestTriangle(t *testing.T) {
 		}
 	}
 }
+
+func TestSquare(t *testing.T) {
+	for i := 0.0; i < 100.0; i++ {
+		//want := Triangle(i, i) * 2.0
+		want := i * i
+		got := Square(i)
+		if got != want {
+			t.Errorf("Square(%f) = %f; want %f", i, got, want)
+		}
+	}
+}
