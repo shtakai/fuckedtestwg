@@ -65,5 +65,6 @@ func (t Thing) DemoV5() {
 }
 
 func doTheThing() error {
+	//return nil
 	return errors.New("error opening file: abc.txt")
 }
