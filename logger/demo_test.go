@@ -55,11 +55,25 @@ func TestDemoV5(t *testing.T) {
 	}
 }
 
-//func TestDemoV7(t *testing.T){
-//	var sb strings.Builder
-//    testLogger := log.New(&sb, "", 0)
-//    thing := logger.Thing{
-//
-//	}
-//}
-//
+func TestDemoV7(t *testing.T) {
+	var sb strings.Builder
+	testLogger := log.New(&sb, "", 0)
+
+	thing := ThingV2{
+		Logger: testLogger,
+	}
+	thing.DemoV7()
+	want := "error in doTheThing():"
+	got := sb.String()
+	if !strings.Contains(got, want) {
+		t.Errorf("Logs = %q; want substring %q", got, want)
+	}
+
+	thing = ThingV2{}
+	thing.DemoV7()
+	want = "error in doTheThing():"
+	got = sb.String()
+	if !strings.Contains(got, want) {
+		t.Errorf("Logs = %q; want substring %q", got, want)
+	}
+}

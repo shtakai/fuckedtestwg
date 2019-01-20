@@ -2,8 +2,10 @@ package logger
 
 import (
 	"errors"
+	"fmt"
 	"log"
 	"os"
+	"sync"
 )
 
 func DemoV1() {
@@ -61,6 +63,45 @@ func (t Thing) DemoV5() {
 	if err != nil {
 		t.Logger.Println("error in doTheThing():", err)
 		t.Logger.Println("error: %s\n", err)
+	}
+}
+
+func DemoV6(logger Logger) {
+	if logger == nil {
+		logger = log.New(os.Stdout, "", log.Ldate|log.Ltime)
+	}
+	err := doTheThing()
+	if err != nil {
+		logger.Println("error in doTheThing():", err)
+		logger.Printf("error: %s\n", err)
+	}
+}
+
+type ThingV2 struct {
+	Logger interface {
+		Println(...interface{})
+		Printf(string, ...interface{})
+	}
+	once sync.Once
+}
+
+func (t *ThingV2) logger() Logger {
+	t.once.Do(func() {
+		if t.Logger == nil {
+			fmt.Println("nil logger:new logger created")
+			t.Logger = log.New(os.Stdout, "", log.Ldate|log.Ltime)
+		} else {
+			fmt.Println("use logger that set on arg")
+		}
+	})
+	return t.Logger
+}
+
+func (t *ThingV2) DemoV7() {
+	err := doTheThing()
+	if err != nil {
+		t.logger().Println("error in doTheThing():", err)
+		t.logger().Println("error: %s\n", err)
 	}
 }
 
