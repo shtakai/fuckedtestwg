@@ -8,6 +8,19 @@ import (
 	"sync"
 )
 
+var logger = log.New(os.Stdout, "", log.Ldate|log.Ltime)
+
+//func OtherWork() {
+//	logger = log.New(os.Stderr, "", 0)
+//}
+
+func DemoGlobal() {
+	err := doTheThing()
+	if err != nil {
+		logger.Println("error in doTheThing():", err)
+	}
+}
+
 func DemoV1() {
 	logger := log.New(os.Stdout, "", log.Ldate|log.Ltime)
 	err := doTheThing()
@@ -50,6 +63,12 @@ func DemoV4(logger Logger) {
 		logger.Printf("error: %s\n", err)
 	}
 }
+
+//var defaultThing Thing
+//
+//func DemoV5() {
+//	defaultThing.DemoV5()
+//}
 
 type Thing struct {
 	Logger interface {
